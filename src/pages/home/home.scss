@@ -1,0 +1,54 @@
+page-home {
+    .mainpagecontent{
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        display: block;
+        margin-top: 44px;
+        margin-bottom: 44px;
+        background: #F3F5F7;
+        font-size: 0px;
+        .con{
+            position: absolute;
+            bottom: 0px;
+        }
+        .lefttype{
+            width:25%;
+            height:100%;
+            display: inline-block;
+             font-size: 14px;
+             .typeitem{
+                 display: block;
+                 border: #f6f6f6 solid 1px;
+                 background: #fff;
+                 text-align:center;
+                 padding:8px 0px; 
+             }
+             .active{
+                color:#D0021B;
+                background:#F3F5F7; 
+             }
+        }
+        .righttype{
+            width:75%;
+            height:100%;
+            display: inline-block;
+            font-size: 12px;
+        }
+    }
+    .headbar{
+        background: #fff;
+        .searchtoolbar{
+            background: #fff;
+            .searchbar-input{
+                background: #f3f5f7;
+            }
+        }
+    }
+    
+}
+.tabbar{
+    opacity: 1;
+}
