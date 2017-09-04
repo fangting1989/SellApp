@@ -1,3 +1,45 @@
 page-about {
+    .list-item{
+        h2{
+            font-size: 14px;
+            margin-top:5px;
+        }
+        p{
+            font-size: 11px;
+        }
+    }
+    .btmnav{
+        height:25px;
+        font-size: 0px;
+        float: right;
+        span{
+            display: inline-block;
+            font-size: 16px;
+            vertical-align: top;
+            background: #f3f5f7;
+            line-height: 23px;
+        }
+        .plus,.sub{
+            padding:0px 15px;
+            margin: 0px 3px;
+        }
+        .num{
+            padding:0px 0px;
+            input{
+                width:30px;
+                height: 25px;
+                border-radius: 0px;
+                text-shadow: 0px;
+                    border:1px solid #f3f5f7;
+                background: #fff;
+                padding:0px;
+                text-align: center;
+                //border:none;
+            }
+        }
+    }
 
+    .scroll-content{
+        margin-bottom:20px;
+    }
 }

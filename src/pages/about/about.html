@@ -1,12 +1,22 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      订单
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-ceshkjahdkashkdjadsahdasjkhdkashdkaashdjahdksajhd
-
+<ion-content >
+  <ion-list>
+      <ion-item *ngFor="let item of DataList" class="list-item">
+        <h2 style="margin:0px;">{{item.name}}</h2>
+        <p>{{item.desc}}</p> 
+        <ion-thumbnail item-start>
+          <img src="{{item.imgpath}}">
+        </ion-thumbnail>
+        <div class="btmnav"> 
+          <span class="plus" (click)="ItemPlusClick(item)">+</span><span class="num"><input type="text" /></span><span class="sub" (click)="ItemSubClick(item)">-</span>
+        </div>
+      </ion-item>
+    </ion-list>
 </ion-content>
