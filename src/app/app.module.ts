@@ -2,42 +2,47 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-
+import { NavgationRoutes } from './app.route';
+import { AboutPage,ContactPage,HomePage ,TabsPage,LoginpagePage} from '../pages';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CommonModule } from '@angular/common';
+import { homeServices,loginServices,baseService,comServices} from '../api'
+import { HttpModule } from '@angular/http';
+var AppComponents = [
+  AboutPage,ContactPage,HomePage ,TabsPage,LoginpagePage
+]
 
-import { homeServices } from '../api'
+var AppServices = [
+  homeServices,loginServices,baseService,comServices
+]
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    ...AppComponents
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    CommonModule,
+    HttpModule,
+    IonicModule.forRoot(MyApp, {
+      backButtonText: '返回',
+
+    }, {
+        links: NavgationRoutes
+      }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    ...AppComponents
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    homeServices
+    ...AppServices
   ]
 })
 export class AppModule {}

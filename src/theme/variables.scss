@@ -86,3 +86,13 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+.toast-class{
+  text-align: center;
+  .toast-container{
+      .toast-message{
+         padding:5px;
+      }
+  }
+  
+}

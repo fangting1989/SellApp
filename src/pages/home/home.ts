@@ -72,4 +72,43 @@ export class HomePage {
 
   }
 
+
+
+
+  // LoadData(e) {
+  //   this.canLoad = false;
+  //   if (e == 'reload') {
+  //     this.PageNum = 0;
+  //     this.DataList = [];
+  //     this.CanLoadMore = true;
+  //   }
+  //   this.PageNum++
+  //   var PostData = {
+  //     pagenum: this.PageNum,
+  //     pagesize: this.PageSize,
+  //     name: this.data.searchText,
+  //     districtId: this.SelectRegionCode
+  //   }
+  //   this.agencyServices.findAgency(PostData).subscribe(result => {
+  //     if (result != null) {
+  //       this.canLoad = true;
+  //       if (result.data.length == 0) {
+  //         this.CanLoadMore = false;
+  //       }
+  //       var self = this;
+  //       _.each(result.data, function (obj) {
+  //         self.DataList.push(obj)
+  //       })
+  //     }
+  //   })
+  // }
+
+  // doLoadData(infiniteScroll) {
+  //   setTimeout(() => {
+  //     this.LoadData('load')
+  //     infiniteScroll.complete();
+  //   }, 500);
+  // }
+
+
 }
