@@ -9,17 +9,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class homeServices  {
+export class orderServices  {
     constructor(public http:Http,public baseService:baseService) { 
     }
 
-    //物料类型
-    public DocMatcls(data):any{
-        return this.baseService.getData("DocMatcls",data)
-    }
-
-    //物料内容
-    public RecMaterials(data):any{
-        return this.baseService.getData("RecMaterials",data)
+    //SureOrder
+    public SureOrder(data):any{
+        return this.baseService.postData("RecClientindentMains/CreateOrder",data)
     }
 }

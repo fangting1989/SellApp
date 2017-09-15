@@ -1,4 +1,11 @@
 page-about {
+    .tprice{
+        color:red;
+    }
+    .top-order{
+        width:24px;
+        height:24px;
+    }
     .list-item{
         h2{
             font-size: 14px;
@@ -8,7 +15,14 @@ page-about {
             font-size: 11px;
         }
     }
+    .dc{
+        font-size: 14px;
+        .price{
+            color:red;
+        }
+    }
     .btmnav{
+        color:#000;
         height:25px;
         font-size: 0px;
         float: right;
@@ -19,9 +33,15 @@ page-about {
             background: #f3f5f7;
             line-height: 23px;
         }
-        .plus,.sub{
-            padding:0px 15px;
+        .plus{
+            padding: 0px 8px;
             margin: 0px 3px;
+            border-radius: 100%;
+        }
+        .sub{
+            padding: 0px 9px;
+            margin: 0px 3px;
+            border-radius: 100%;
         }
         .num{
             padding:0px 0px;
@@ -35,6 +55,7 @@ page-about {
                 padding:0px;
                 text-align: center;
                 //border:none;
+                font-size: 14px;
             }
         }
     }

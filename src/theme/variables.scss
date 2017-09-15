@@ -96,3 +96,11 @@ $colors: (
   }
   
 }
+
+.toolbar-content{
+  text-align: center;
+  .top-title{
+    display: inline-block;
+    font-weight: 700;
+  }
+}

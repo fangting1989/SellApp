@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import {loginServices,comServices} from '../../api'
 import {TabsPage} from '../../pages'
+import { CoolLocalStorage } from 'angular2-cool-storage';
+import { WebConfig } from './../../config/config'
 @IonicPage()
 @Component({
   selector: 'page-loginpage',
@@ -14,7 +16,8 @@ export class LoginpagePage{
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private loginServices:loginServices,
-    private comServices:comServices
+    private comServices:comServices,
+    private CoolLocalStorage:CoolLocalStorage
     ) {
   }
 
@@ -39,6 +42,9 @@ export class LoginpagePage{
         if(result.length != 1 ){
           this.comServices.TipInfo("对不起,找不到您的账户信息")
         }else{
+          //记录本地信息
+          var obj = result[0]
+          this.CoolLocalStorage.setObject(WebConfig.cookieKeyName,obj);
           this.navCtrl.push(TabsPage);
         }
       }

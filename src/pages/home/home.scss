@@ -55,9 +55,15 @@ page-home {
                     background: #f3f5f7;
                     line-height: 23px;
                 }
-                .plus,.sub{
-                    padding:0px 15px;
+                .plus{
+                    padding: 0px 8px;
                     margin: 0px 3px;
+                    border-radius: 100%;
+                }
+                .sub{
+                    padding: 0px 9px;
+                    margin: 0px 3px;
+                    border-radius: 100%;
                 }
                 .num{
                     padding:0px 0px;
@@ -70,6 +76,7 @@ page-home {
                         background: #fff;
                         padding:0px;
                         text-align: center;
+                        font-size: 14px;
                         //border:none;
                     }
                 }
@@ -90,5 +97,93 @@ page-home {
 .tabbar{
     opacity: 1;
 }
+
+.point-outer{
+    position:absolute; 
+    z-index:20;
+    -webkit-transition:all 0.3s cubic-bezier(0.39,-0.4,0.83,0.23) 0s;
+}
+.point-inner{
+    width:15px;
+    height:15px; 
+    border-radius:50%;
+    background-color:#ff6326; 
+    -webkit-transition:all 0.3s linear 0s;
+}
+.point-outer.point-pre{
+    display:none;
+}
+
+/* 图标放大动画开始 */
+.animation{
+    animation: myfirst 0.4s;
+    -moz-animation: myfirst 0.4s;	/* Firefox */
+    -webkit-animation: myfirst 0.4s;	/* Safari 和 Chrome */
+    -o-animation: myfirst 0.4s;	/* Opera */
+}
+@keyframes myfirst
+{
+    0%{
+        width:20px;
+        height:20px;
+    }
+    50%{
+        width:26px;
+        height:30px;
+    }
+    100% {
+        width:20px;
+        height:20px;
+    }
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+    0%{
+        width:20px;
+        height:20px;
+    }
+    50%{
+        width:26px;
+        height:30px;
+    }
+    100% {
+        width:20px;
+        height:20px;
+    }
+}
+
+@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+    0%{
+        width:20px;
+        height:20px;
+    }
+    50%{
+        width:26px;
+        height:30px;
+    }
+    100% {
+        width:20px;
+        height:20px;
+    }
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+    0%{
+        width:20px;
+        height:20px;
+    }
+    50%{
+        width:26px;
+        height:30px;
+    }
+    100% {
+        width:20px;
+        height:20px;
+    }
+}
+/* 图标放大动画结束 */
 
 

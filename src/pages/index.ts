@@ -3,3 +3,4 @@ export * from './tabs/tabs';
 export * from './contact/contact';
 export * from './home/home';
 export * from './loginpage/loginpage';
+export * from './preorder/preorder';

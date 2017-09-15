@@ -26,16 +26,16 @@ export class baseService {
             if (typeof retData.token == 'undefined') {
                 //错误处理
             }
-            if (typeof retData.errid != 'undefined' && retData.errid < 0) {
-                let loading = this.loadingCtrl.create({
-                    content: '请求错误,可能原因是:' + retData.errmsg,
-                    duration: 1500
-                });
-                loading.present();
-                return null
-            }
+            // if (typeof retData.errid != 'undefined' && retData.errid < 0) {
+            //     let loading = this.loadingCtrl.create({
+            //         content: '请求错误,可能原因是:' + retData.errmsg,
+            //         duration: 1500
+            //     });
+            //     loading.present();
+            //     return null
+            // }
 
-            localStorage.setItem('WebAdmin_token_admin_yunland', retData.token)
+            // localStorage.setItem('WebAdmin_token_admin_yunland', retData.token)
             return retData;
         }).catch((error: any) => {
             let loading = this.loadingCtrl.create({
@@ -59,15 +59,15 @@ export class baseService {
             if (typeof retData.token == 'undefined') {
                 //错误处理
             }
-            if (typeof retData.errid != 'undefined' && retData.errid < 0) {
-                let loading = this.loadingCtrl.create({
-                    content: '请求错误,可能原因是:' + retData.errmsg,
-                    duration: 1500
-                });
-                loading.present();
-                return null
-            }
-            localStorage.setItem('WebAdmin_token_admin_yunland', retData.token)
+            // if (typeof retData.errid != 'undefined' && retData.errid < 0) {
+            //     let loading = this.loadingCtrl.create({
+            //         content: '请求错误,可能原因是:' + retData.errmsg,
+            //         duration: 1500
+            //     });
+            //     loading.present();
+            //     return null
+            // }
+            // localStorage.setItem('WebAdmin_token_admin_yunland', retData.token)
             return retData;
         }).catch((error: any) => {
             let loading = this.loadingCtrl.create({
@@ -107,41 +107,6 @@ export class baseService {
             });
             loading.present();
             return Observable.throw(error || 'Server Cannot Access')
-        })
-    }
-
-    //微信专用
-    public TMData(methodurl, data): any {
-        let url = WebConfig.TMUrl + methodurl;
-        let mparams = new URLSearchParams();
-        _.map(data, function (prop, key) {
-            mparams.append(key, prop)
-        })
-        let mheaders = new Headers();
-        mheaders.append("Token", typeof localStorage.getItem('WebAdmin_token_admin_yunland') == "undefined" ? "" : localStorage.getItem('WebAdmin_token_admin_yunland'))
-        return this.http.get(url, { search: mparams, headers: mheaders }).map((res: Response) => {
-            let retData = res.json();
-            if (typeof retData.token == 'undefined') {
-                //错误处理
-            }
-            if (typeof retData.errid != 'undefined' && retData.errid < 0) {
-                let loading = this.loadingCtrl.create({
-                    content: '请求错误,可能原因是:' + retData.errmsg,
-                    duration: 1500
-                });
-                loading.present();
-                return null
-            }
-
-            localStorage.setItem('WebAdmin_token_admin_yunland', retData.token)
-            return retData;
-        }).catch((error: any) => {
-            let loading = this.loadingCtrl.create({
-                content: '请求网络错误',
-                duration: 800
-            });
-            loading.present();
-            ; return Observable.throw(error || 'Server Cannot Access')
         })
     }
 }
