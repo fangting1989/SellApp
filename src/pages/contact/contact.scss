@@ -1,3 +1,28 @@
 page-contact {
-    
+    .nav-dsh{
+        text-align: center;
+        min-height: 40%;
+        display: flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+
+        .card-content{
+            font-size: 16px;
+            font-weight: 700;
+            position: relative;
+            span{
+                position: absolute;
+                display:inline-block;
+                width:25px;
+                height:25px;
+                line-height:25px;
+                border-radius: 100%;
+                background: #f53d3d;
+                color:#fff;
+                top:0px;
+                right:0px;
+            }
+        }
+    }
 }

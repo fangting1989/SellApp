@@ -1,17 +1,22 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
+    <span class="top-title">
+      
+    </span>
+
+    <ion-buttons end>
+     <button ion-button icon-only (tap)="FinshOrder()">
+       已完成订单
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+  <ion-card class="nav-dsh">
+    <ion-card-content (click)="WaitOrder()">
+      待收货订单<span *ngIf="WaitCount">{{WaitCount}}</span>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

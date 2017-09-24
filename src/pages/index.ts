@@ -4,3 +4,8 @@ export * from './contact/contact';
 export * from './home/home';
 export * from './loginpage/loginpage';
 export * from './preorder/preorder';
+export * from './finishorderlist/finishorderlist';
+export * from './orderlist/orderlist';
+export * from './orderdetail/orderdetail';
+export * from './fixorder/fixorder';
+export * from './fixorderitem/fixorderitem';

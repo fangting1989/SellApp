@@ -1,0 +1,35 @@
+<!--
+  Generated template for the OrderdetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <span class="top-title">
+      订单详情
+    </span>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="hd-list-item">总金额:200元</div>
+   <ion-list>
+      <ion-item *ngFor="let item of DataList" class="list-item">
+        <h2 style="margin:0px;">{{item.pro.mtname}}</h2>
+        <p>{{item.pro.desc}}</p> 
+        <ion-thumbnail item-start>
+          <img src="{{item.imgpath}}">
+        </ion-thumbnail>
+        <div class="dc">￥<span class="price">{{item.pro.price}}</span>
+          <div class="btmnav">
+            下单:20分,签收200分 
+          </div>
+        </div>
+        
+      </ion-item>
+    </ion-list>
+</ion-content>

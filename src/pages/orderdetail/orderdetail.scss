@@ -1,0 +1,30 @@
+page-orderdetail {
+    .hd-list-item{
+            text-align: center;
+        height: 40px;
+        line-height: 40px;
+        background: #F53D3D;;
+        font-size: 14px;
+        color: #FFF;
+    }
+    .list-item{
+        h2{
+            font-size: 14px;
+            margin-top:5px;
+        }
+        p{
+            font-size: 11px;
+        }
+        .label{
+            margin: 10px 10px 5px 5px;
+        }
+    }
+     .btmnav{
+        color:#000;
+        height:25px;
+        //float: right;
+        font-size: 12px;
+        text-align: right;
+     }
+    
+}

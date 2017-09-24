@@ -4,6 +4,7 @@ import { _ } from 'underscore'
 import {orderServices,comServices} from '../../api'
 import { CoolLocalStorage } from 'angular2-cool-storage';
 import { WebConfig } from './../../config/config'
+import {TabsPage} from '../../pages'
 @Component({
   selector: 'page-preorder',
   templateUrl: 'preorder.html',
@@ -53,7 +54,12 @@ export class PreorderPage {
 
     this.orderServices.SureOrder(postData).subscribe(result => {
       if (result != null) {
-        console.log(result)
+        if(result.errid > 0){
+          this.comServices.TipInfo("订单下单成功！")
+          setTimeout(function(){
+             this.navCtrl.push(TabsPage);
+          },1500)
+        }
       }
     })
   }

@@ -34,6 +34,11 @@ export class TabsPage {
           self.tabBadgeCount = self.DataList.length
         }
       });
+
+       this._state.subscribe('ClearOrder', (data) => {
+        self.DataList = [];
+        self.tabBadgeCount = 0      
+      });
   }
   
 //初次加载时

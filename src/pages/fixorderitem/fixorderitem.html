@@ -1,0 +1,80 @@
+<ion-content  class="unitmodal">
+  <div  style="position:relative;padding:0;background-color:#fff;height:240px">
+	 <i ng-click="KeyBoardModal.hide()" style="color:#D0021B;    right: -8px;
+    top: -11px;
+    font-size: 32px;" class="ion-close-circled right-close theme_red" ></i>
+		<div class="header">{{currentItem.name}}</div>
+		<div class="row" style="height: 50px;">
+			<div class="col col-center">
+				<div class="col col-20">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+				<div class="col" style="position: relative;">
+					<span  style="position:absolute;left:10px;top:25px;font-size:16px;">实发数量</span>
+					<div class="input-block" style="position:relative;width: 50%;margin:10px auto 20px auto;">
+						<span ng-model="form.cnt" class="mmm">
+							<span class="mm">{{form.cnt}}</span>
+						</span>
+						<input type="text" ng-model="form.cnt" style="font-size:14px;" class="input-block-el input-center futsu" placeholder="请输入数量">
+						<div class="input-block-line"></div>
+
+					</div>
+					
+					<span style="position:absolute;right:35px;top:25px;font-size:16px;">{{currentItem.unit_name}}</span>
+				</div>
+				<div class="col col-20">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			</div>
+			
+		</div>
+		<div style="height: 36px;text-align: center; width: 100%; ">
+			待发货数量:{{form.theory_cnt}}
+		</div>
+
+		<div class="modalfooter">
+			<button class="needconfirm" ng-click="KeyBoardOKClick()">确定</button>
+		</div>
+	</div>
+
+
+
+
+  <div class="keyboradarea">
+    <div class="row">
+        <div ng-click="selected(1)" class="col">
+            <p>
+            1
+            </p>
+        </div>
+        <div ng-click="selected(2)" class="col">
+        <p>2</p></div>
+        <div ng-click="selected(3)" class="col">
+        <p>3</p></div>
+    </div>
+    <div class="row">
+        <div ng-click="selected(4)" class="col">
+        <p>4</p></div>
+        <div ng-click="selected(5)" class="col">
+        <p>5</p></div>
+        <div ng-click="selected(6)" class="col">
+        <p>6</p></div>
+    </div>
+    <div class="row">
+        <div  ng-click="selected(7)" class="col">
+        <p>7</p></div>
+        <div  ng-click="selected(8)" class="col">
+        <p>8</p></div>
+        <div ng-click="selected(9)" class="col">
+        <p>9</p></div>
+    </div>
+    <div class="row">
+        <div ng-click="selected('.')" class="col bg">
+        <p>.</p></div>
+        <div ng-click="selected(0)" class="col">
+        <p>0</p></div>
+        <div  ng-click="selected('remove')" class="col bg">
+        <p>
+            <ion-icon name="backspace"></ion-icon>
+        </p>            
+        </div>
+    </div>
+</div>
+
+</ion-content>
