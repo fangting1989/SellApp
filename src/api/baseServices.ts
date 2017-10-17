@@ -78,6 +78,42 @@ export class baseService {
             return Observable.throw(error || 'Server Cannot Access')
         })
     }
+
+    public postgetData(methodurl, postdata,getdata): any {
+        let url = WebConfig.BaseUrl + methodurl;
+        let body = postdata// JSON.stringify(data);
+        let mparams = new URLSearchParams();
+        _.map(getdata, function (prop, key) {
+            mparams.append(key, JSON.stringify(prop))
+        })
+        let mheaders = new Headers();
+        //插入兼职
+        mheaders.append("Token", typeof localStorage.getItem('WebAdmin_token_admin_yunland') == "undefined" ? "" : localStorage.getItem('WebAdmin_token_admin_yunland'))
+        mheaders.append("Content-Type", "application/json")
+        return this.http.post(url, body, { search: mparams, headers: mheaders }).map((res: Response) => {
+            let retData = res.json();
+            if (typeof retData.token == 'undefined') {
+                //错误处理
+            }
+            // if (typeof retData.errid != 'undefined' && retData.errid < 0) {
+            //     let loading = this.loadingCtrl.create({
+            //         content: '请求错误,可能原因是:' + retData.errmsg,
+            //         duration: 1500
+            //     });
+            //     loading.present();
+            //     return null
+            // }
+            // localStorage.setItem('WebAdmin_token_admin_yunland', retData.token)
+            return retData;
+        }).catch((error: any) => {
+            let loading = this.loadingCtrl.create({
+                content: '请求网络错误',
+                duration: 800
+            });
+            loading.present();
+            return Observable.throw(error || 'Server Cannot Access')
+        })
+    }
     public postFile(methodurl, data): any {
         let url = WebConfig.BaseUrl + methodurl;
         let body = data// JSON.stringify(data);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController  } from 'ionic-angular';
 import { _ } from 'underscore'
 import {orderServices,comServices} from '../../api'
 import { CoolLocalStorage } from 'angular2-cool-storage';
@@ -18,7 +18,8 @@ export class PreorderPage {
     public navParams: NavParams,
     private orderServices:orderServices,
     private comServices:comServices,
-    private CoolLocalStorage: CoolLocalStorage) {
+    private CoolLocalStorage: CoolLocalStorage,
+    private ViewController:ViewController) {
     this.DataList =  navParams.get('OrderList');
     this.ReSetTotalPrice()
     var objQYObject = { name: null, memberID: null }
@@ -42,6 +43,7 @@ export class PreorderPage {
   }
 
   SureOrder(){
+    var self = this
     if(!this.CanLoadding)
       return;
     this.CanLoadding = false;
@@ -57,7 +59,8 @@ export class PreorderPage {
         if(result.errid > 0){
           this.comServices.TipInfo("订单下单成功！")
           setTimeout(function(){
-             this.navCtrl.push(TabsPage);
+            
+             self.ViewController.dismiss({order:'success'});
           },1500)
         }
       }

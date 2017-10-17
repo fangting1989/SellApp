@@ -18,14 +18,14 @@
 <ion-content >
   <ion-card *ngFor="let item of DataList" class="card-item" (click)="ItemClick(item)">
     <ion-card-header>
-      时间:<span>{{item.createdate|dateformatpipe:'YYYY-MM-DD' }}</span><span class="rt">已完成</span>
+      时间:<span>{{item.createdate|dateformatpipe:'YYYY-MM-DD' }}</span><span class="rt">{{item.formstate|prostatepipe}}</span>
     </ion-card-header>
     <ion-card-content class="cont">
      订单号<span>{{item.formno}}</span>
       <ion-icon class="rt" name="arrow-forward"></ion-icon>
     </ion-card-content>
      <ion-row class="card-btm">
-      <div class="con">共商品3件,金额:200元</div>
+      <div class="con">共商品{{item.totalcount}}件,金额:{{item.totalmoney}}元</div>
     </ion-row>
   </ion-card>
 </ion-content>

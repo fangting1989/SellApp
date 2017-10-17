@@ -45,7 +45,49 @@ page-fixorder {
          .input-wrapper{
             .label{
                 margin: 0px;
+                text-align: right;
+                .icon-edit{
+                    margin-left: 10px;
+                }
             }   
+         }
+     }
+
+     .footer-nav{
+         .btm-nav{
+             height: 42px;
+            line-height: 42px;
+            position: relative;
+             .all{
+                position: absolute;
+                height:100%;
+                width:40%;
+                top:0px;
+                left:0px;
+                text-align: center;
+                color:#fff;
+                background: #F53D3D;
+             }
+             .part{
+                position: absolute;
+                height:100%;
+                width:60%;
+                top:0px;
+                left:40%;
+                text-align: center;
+                color:#fff;
+                background: #fdc52e
+             }
+             .all-part{
+                position: absolute;
+                height:100%;
+                width:100%;
+                top:0px;
+                left:0px;
+                text-align: center;
+                color:#fff;
+                background: #F53D3D;
+             }
          }
      }
 }

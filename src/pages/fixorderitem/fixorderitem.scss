@@ -6,7 +6,7 @@ page-fixorderitem {
   left: 0%;
   min-height: auto !important;
   height: 100%;
-  background: rgba(255,255,255,0.6); 
+  background: rgba(0,0,0,0.3); 
   }
   .unitmodal .xuanze {
     border: .5px solid #979797;
@@ -40,6 +40,9 @@ page-fixorderitem {
     background-color: #D0021B;
     left: 0;
     border: none; 
+    }
+    .input-block-el{
+        border-radius: 0px;
     }
 
     .keyboradarea {
@@ -143,6 +146,15 @@ page-fixorderitem {
   border: 0.5px solid #D0021B;
   border-radius: 2px;
   color: #D0021B; }
+}
+
+.modalfooter{
+    text-align: center;
+    .btn-sure{
+        height: 30px;
+        font-size: 14px;
+        line-height: 30px;
+    }
 }
 
 

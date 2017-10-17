@@ -105,3 +105,25 @@ $colors: (
     font-size: 18px;
   }
 }
+
+.input-block{
+  display: inline-block;
+}
+
+.header-md{
+  .searchbar-md{
+    padding:0px;
+  }
+  .toolbar-md{
+    min-height: 48px;
+  }
+}
+.content-md{
+  // .fixed-content{
+  //   margin-top: 48px !important;
+  // }
+  // .scroll-content{
+  //   margin-top: 48px !important;
+  // }
+}
+

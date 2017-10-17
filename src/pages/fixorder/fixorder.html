@@ -16,7 +16,7 @@
 
 
 <ion-content >
-  <div class="hd-list-item">总金额:200元</div>
+  <div class="hd-list-item">总金额:{{TotalMoney}}元</div>
   <div>
   <ion-list *ngFor="let item of DataList" class="list-item">
       <ion-item >
@@ -25,12 +25,25 @@
         <ion-thumbnail item-start>
           <img src="{{item.imgpath}}">
         </ion-thumbnail>
-        <div class="dc">￥<span class="price">{{item.pro.price}}</span>
+        <div class="dc">￥<span class="price">{{item.sendprice}}</span>
         </div>
       </ion-item>
-      <ion-item class="btn-nav" (click)="ItemClick(item)">
-        <span>下单:20分</span><span>签收20分</span>
+      <ion-item class="btn-nav" (click)="ItemClick(item)" *ngIf="OrderState == 5">
+        <span >下单:{{item.quantity}}{{item.pro.storeunit}}</span>&nbsp;,&nbsp;<span>签收{{item.sendquantity}}{{item.pro.storeunit}}</span><span class="icon-edit"><ion-icon name="create"></ion-icon></span>
+      </ion-item>
+      <ion-item class="btn-nav"  *ngIf="OrderState == 6">
+        <span >下单:{{item.quantity}}{{item.pro.storeunit}}</span>&nbsp;,&nbsp;<span>已签收{{item.sendquantity}}{{item.pro.storeunit}}</span>&nbsp;,&nbsp;<span style="color:#f53d3d">缺:{{item.quantity - item.sendquantity}}{{item.pro.storeunit}}</span>
       </ion-item>
     </ion-list>
     </div>
 </ion-content>
+<ion-footer *ngIf="OrderState == 5" class="footer-nav">
+  <div class="btm-nav">
+    <span class="all" (click)="AllPro()">全部收货</span><span class="part" (click)="PartPro()">部分收货</span>
+  </div>
+</ion-footer>
+<ion-footer *ngIf="OrderState == 6" class="footer-nav">
+  <div class="btm-nav">
+    <span class="all-part" (click)="AllPro()">全部收货</span>
+  </div>
+</ion-footer>

@@ -1,22 +1,18 @@
-<ion-header>
-  <ion-navbar>
-    <span class="top-title">
-      
-    </span>
-
-    <ion-buttons end>
-     <button ion-button icon-only (tap)="FinshOrder()">
-       已完成订单
-      </button>
-    </ion-buttons>
-
-  </ion-navbar>
-</ion-header>
-
 <ion-content>
   <ion-card class="nav-dsh">
     <ion-card-content (click)="WaitOrder()">
-      待收货订单<span *ngIf="WaitCount">{{WaitCount}}</span>
+      {{UserData.clientname}}
     </ion-card-content>
   </ion-card>
+  <ion-list>
+  <button ion-item  (click)="ChangePwd()">
+    修改密码
+  </button>
+  <button ion-item  (click)="ShowED()">
+    查看额度
+  </button>
+  <button ion-item  (click)="ShowAccount()">
+    查看打款账号
+  </button> 
+</ion-list>
 </ion-content>

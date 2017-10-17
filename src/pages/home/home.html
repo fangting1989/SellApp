@@ -2,8 +2,8 @@
   <ion-searchbar placeholder="请输入名称" [showCancelButton]="shouldShowCancel" class="searchtoolbar" (ionInput)="getItems($event)"></ion-searchbar>
 </ion-header>
 
-<div class="mainpagecontent">
-  <div class="fixed-content" style="margin-top: 44px; margin-bottom: 52px;"></div>
+<ion-content class="mainpagecontent">
+  <div class="fixed-content" style="margin-top: 64px; margin-bottom: 52px;"></div>
   <ion-scroll class="lefttype" scrollY="true">
     <div class="typeitem" (click)="TypeClick(item)" [ngClass]="{'active':item.active}" *ngFor="let item of ListType">{{item.clsname}}</div>
   </ion-scroll>
@@ -11,7 +11,7 @@
     <ion-list>
       <ion-item *ngFor="let item of DataList" class="list-item">
         <h2>{{item.mtname}}</h2>
-        <p>{{item.desc}}</p> 
+        <p><span class="price">{{item.price}}</span>元/{{item.stockunit}}</p> 
         <ion-thumbnail item-start>
           <img src="{{item.imgpath}}">
         </ion-thumbnail>
@@ -22,4 +22,9 @@
       </ion-item>
     </ion-list>
   </ion-scroll>
-</div>
+
+  <div class="nav-cart" (click)="CartOrder()">
+    <ion-icon name="cart" class="cart"></ion-icon>
+    <span class="badge" *ngIf="SelDataList.length > 0">{{SelDataList.length}}</span>
+  </div>
+</ion-content>

@@ -1,5 +1,5 @@
 <!--
-  Generated template for the OrderdetailPage page.
+  Generated template for the WaitpayorderdetailPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -26,10 +26,21 @@
         </ion-thumbnail>
         <div class="dc">￥<span class="price">{{item.sendprice}}</span>
           <div class="btmnav">
-            <span>下单:{{item.quantity}}{{item.pro.storeunit}}</span>&nbsp;,&nbsp;<span>签收{{item.sendquantity}}{{item.pro.storeunit}}</span>
+            下单:{{item.quantity}}{{item.pro.storeunit}}
           </div>
         </div>
         
       </ion-item>
     </ion-list>
 </ion-content>
+<!--<ion-footer *ngIf="OrderState == 3" class="nav-btm">
+  <ion-toolbar>
+    <ion-title class="surepay">确定支付</ion-title>
+  </ion-toolbar>
+</ion-footer>-->
+
+<ion-footer *ngIf="OrderState == 3" class="footer-nav">
+  <div class="btm-nav" (click)="PayMoney()">
+    <span class="surepay">确定支付</span>
+  </div>
+</ion-footer>

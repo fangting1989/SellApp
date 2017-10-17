@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <span class="top-title">
+      订单<span class="tprice">({{TotalPrice}}元)</span>
+    </span>
+
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="PreOrder()">
+        <img class="top-order" src="./assets/images/order.png" alt="" >
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <ion-list>
+      <ion-item *ngFor="let item of DataList" class="list-item">
+        <h2 style="margin:0px;">{{item.mtname}}</h2>
+        <p>{{item.desc}}</p> 
+        <ion-thumbnail item-start>
+          <img src="{{item.imgpath}}">
+        </ion-thumbnail>
+        <div class="dc">￥<span class="price">{{item.price}}</span>
+          <div class="btmnav"> 
+            <span class="sub" (tap)="ItemSubClick(item)">-</span><span class="num"><input type="number" (blur)="Blur(item,$event)" [(ngModel)]="item.selnum" (ngModelChange)="DataItemNumChange(item)" /></span><span class="plus" (tap)="ItemPlusClick(item)">+</span>
+          </div>
+        </div>
+        
+      </ion-item>
+    </ion-list>
+</ion-content>

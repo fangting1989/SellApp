@@ -2,20 +2,28 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import {comServices,orderServices} from '../../api'
 import {_} from 'underscore'
+import { GlobalState} from './../../app/global.state';
+
 @Component({
-  selector: 'page-orderdetail',
-  templateUrl: 'orderdetail.html',
+  selector: 'page-waitpayorderdetail',
+  templateUrl: 'waitpayorderdetail.html',
 })
-export class OrderdetailPage {
-  DataList:any = [];
+export class WaitpayorderdetailPage {
+
+   DataList:any = [];
   ItemData:any = {};
   TotalMoney:any = 0;
+  OrderState:any = 0;
+  CanPaying:any = true;
+  
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl:ViewController,
     private comServices:comServices,
-    private orderServices:orderServices) {
+    private orderServices:orderServices,
+    private _state:GlobalState) {
     this.ItemData =  navParams.get('ItemData');
+    this.OrderState = navParams.get('state');
     console.log(this.ItemData)
   }
 
@@ -40,8 +48,8 @@ export class OrderdetailPage {
           obj.pro = {}
           self.loadPro(obj)
         })
+        this.ResetTotalMoney();
       }
-      this.ResetTotalMoney();
     })
   }
 
@@ -67,4 +75,30 @@ export class OrderdetailPage {
       self.TotalMoney += obj.saleamount
     })
   }
+
+  PayMoney(){
+    if(!this.CanPaying){
+      return
+    }
+    this.CanPaying = false;
+
+    var PostData = {
+        where:{
+          and:[{formno:this.ItemData.formno}]
+        }
+    }
+    var model = {
+      formstate:4
+    }
+    this.orderServices.UpdateOrder(PostData,model).subscribe(result => {
+      this.CanPaying = true;
+      if (result != null &&result.count > 0) {
+        this.comServices.TipInfo("支付成功!")
+        //发送刷新页面
+        this._state.notifyDataChanged('OrderPayEvent', {refresh:true})
+        this.navCtrl.pop();
+      }
+    })
+  }
+
 }

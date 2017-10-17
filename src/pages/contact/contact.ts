@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams ,App } from 'ionic-angular';
+import { NavController, NavParams ,App ,ModalController} from 'ionic-angular';
 import {comServices,orderServices} from '../../api'
-import {FinishorderlistPage,OrderlistPage} from '../../pages'
+import {ChangepwdPage,MoneyedPage,AccountsPage} from '../../pages'
 import { CoolLocalStorage } from 'angular2-cool-storage';
 import { WebConfig } from './../../config/config'
 @Component({
@@ -18,38 +18,33 @@ export class ContactPage {
     private comServices:comServices,
     private orderServices:orderServices,
     public appctrl: App,
-    private CoolLocalStorage:CoolLocalStorage) {
+    private CoolLocalStorage:CoolLocalStorage,
+    public modalCtrl: ModalController) {
     
       this.UserData = (Object)(this.CoolLocalStorage.getObject(WebConfig.cookieKeyName))
   }
   ionViewDidLoad() {
-    console.log("load contact")
     this.InitData()
+    console.log(this.UserData)
   }
 
   InitData(){
-    this.LoadWaitOrderCount()
-  }
-
-  LoadWaitOrderCount(){
     
-    var PostData = {
-      where:{
-        and:[{formstate:{inq:[5,6]}},{clientcode:this.UserData.clientcode}]
-      }
-    }
-    this.orderServices.OrderCount(PostData).subscribe(result => {
-      if (result != null) {
-        this.WaitCount = result.count
-      }
-    })
   }
 
-  FinshOrder(){
-    this.appctrl.getRootNav().push(FinishorderlistPage)
+  ChangePwd(){
+    let ChangepwdPageModal = this.modalCtrl.create(ChangepwdPage);
+      ChangepwdPageModal.present();
   }
 
-  WaitOrder(){
-    this.appctrl.getRootNav().push(OrderlistPage)
+  ShowED(){
+    let MoneyedPageModal = this.modalCtrl.create(MoneyedPage);
+      MoneyedPageModal.present();
   }
+
+  ShowAccount(){
+    let AccountPageModal = this.modalCtrl.create(AccountsPage);
+    AccountPageModal.present();
+  }
+  
 }

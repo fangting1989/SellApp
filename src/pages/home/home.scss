@@ -6,8 +6,8 @@ page-home {
         bottom: 0;
         position: absolute;
         display: block;
-        margin-top: 44px;
-        margin-bottom: 44px;
+        margin-top: 0px;
+        margin-bottom: 0px;
         background: #F3F5F7;
         font-size: 0px;
         .con{
@@ -42,6 +42,9 @@ page-home {
                 }
                 p{
                     font-size: 11px;
+                    .price{
+                        color:#D0021B;
+                    }
                 }
             }
             .btmnav{
@@ -82,6 +85,36 @@ page-home {
                 }
             }
         }
+        .nav-cart{
+            position: absolute;
+            bottom: 18px;
+            left:20px;
+            width:40px;
+            height:40px;
+            color:#333;
+            z-index: 99999;
+            font-size: 24px;
+            line-height: 40px;
+            border-radius: 100%;
+            background: #fff;
+            text-align: center;
+            .cart{
+                padding-top:6px;
+            }
+            .badge{
+                position: absolute;
+                height:15px;
+                width:15px;
+                line-height: 15px;
+                top:0px;
+                right:0px;
+                background: #F53D3D;
+                color:#fff;
+                font-size: 10px;
+                font-weight: 700;
+                border-radius: 100%;
+            }
+        }
     }
     .headbar{
         background: #fff;
@@ -92,6 +125,8 @@ page-home {
             }
         }
     }
+
+    
     
 }
 .tabbar{

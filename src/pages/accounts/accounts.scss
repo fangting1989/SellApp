@@ -1,11 +1,12 @@
-page-about {
+page-accounts {
     .nav-dsh{
         text-align: center;
-        min-height: 20%;
+        min-height: 25%;
         display: flex;
         flex-direction:column;
         justify-content:center;
         align-items:center;
+        background: #f3f3f4;
 
         .card-content{
             font-size: 16px;
@@ -24,5 +25,9 @@ page-about {
                 right:0px;
             }
         }
+    }
+
+    .bar-buttons-md{
+        position: absolute;
     }
 }

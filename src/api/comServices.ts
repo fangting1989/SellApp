@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController, LoadingController } from 'ionic-angular';
+import { ToastController, LoadingController ,AlertController } from 'ionic-angular';
 import { Observable } from 'rxjs/Rx';
 import { WebConfig } from './../config/config'
 import { _ } from 'underscore'
@@ -10,7 +10,8 @@ import 'rxjs/add/operator/catch';
 export class comServices {
     constructor(
         public toastCtrl: ToastController,
-        public loadingCtrl: LoadingController
+        public loadingCtrl: LoadingController,
+        public alertCtrl: AlertController
         ) {
     }
 
@@ -34,5 +35,32 @@ export class comServices {
         setTimeout(() => {
             loading.dismiss();
         }, 1500);
+    }
+
+    public ConfirmInfo(opt:any){
+        let confirm = this.alertCtrl.create({
+        title: opt.title == null?'提示':opt.title,
+        message: opt.message == null?'提示':opt.message,
+        buttons: [
+            {
+            text: '是',
+            handler: () => {
+                if(typeof opt.SureCallBack == 'function'){
+                    opt.SureCallBack ()
+                }
+            }
+            },
+            {
+            text: '否',
+            handler: () => {
+                if(typeof opt.CancelCallBack == 'function'){
+                    opt.CancelCallBack ()
+                }
+            }
+            }
+        ]
+        });
+        confirm.present();
+
     }
 }

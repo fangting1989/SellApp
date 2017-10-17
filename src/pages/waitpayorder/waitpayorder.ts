@@ -1,41 +1,41 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController,App } from 'ionic-angular';
+import { IonicPage, NavController,ViewController, NavParams,App } from 'ionic-angular';
 import {comServices,orderServices} from '../../api'
-import {FixorderPage} from './../../pages'
+import {WaitpayorderdetailPage} from './../../pages'
 import {_} from 'underscore'
 import { GlobalState} from './../../app/global.state';
 
 @Component({
-  selector: 'page-orderlist',
-  templateUrl: 'orderlist.html',
+  selector: 'page-waitpayorder',
+  templateUrl: 'waitpayorder.html',
 })
-export class OrderlistPage {
-   DataList:any = [];
-   OrderState:any = 0;
+export class WaitpayorderPage {
+
+  DataList:any = [];
+  OrderState:any = 0;
   TitleText = '';
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public viewCtrl: ViewController,
     private comServices:comServices,
     private orderServices:orderServices,
+    public viewCtrl: ViewController,
     private appctrl:App,
-    private _state:GlobalState
-    ) {
-      this._state.subscribe('OrderSHEvent', (data) => {
+    private _state:GlobalState) {
+
+      this._state.subscribe('OrderPayEvent', (data) => {
         if(data.refresh == true){
           this.loadData();
         }
       })
-
   }
 
   ionViewDidLoad() {
     this.viewCtrl.setBackButtonText('');
     this.OrderState =  this.navParams.get('state');
-    if(this.OrderState.length == 2){
-      this.TitleText = '待收货列表'
-    }else if(this.OrderState.length == 1){
-      this.TitleText = '待收货列表'
+    if(this.OrderState == 2){
+      this.TitleText = '待审核订单列表'
+    }else if(this.OrderState == 3){
+      this.TitleText = '待支付订单列表'
     }else{
       this.TitleText = ''
     }
@@ -47,7 +47,7 @@ export class OrderlistPage {
     var PostData = {
         filter:{
           where:{
-            and:[{formstate:{inq:this.OrderState}}]
+            and:[{formstate:{inq:[this.OrderState]}}]
           },
           order:'formdate DESC'
         }
@@ -76,12 +76,9 @@ export class OrderlistPage {
     })
   }
 
+  //查看详情
   ItemClick(item){
-    //财务确认无法点击进入
-    if(item.formstate == 4){
-      this.comServices.TipInfo("财务确认中..")
-      return;
-    }
-    this.appctrl.getRootNav().push(FixorderPage,{ItemData:item,state:item.formstate})
+    this.appctrl.getRootNav().push(WaitpayorderdetailPage,{ItemData:item,state:this.OrderState})
   }
+
 }

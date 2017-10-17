@@ -1,85 +1,147 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController } from 'ionic-angular';
-import { GlobalState} from './../../app/global.state';
+import { NavController, NavParams ,App } from 'ionic-angular';
+import {comServices,orderServices} from '../../api'
+import {FinishorderlistPage,OrderlistPage,WaitpayorderPage} from '../../pages'
 import { CoolLocalStorage } from 'angular2-cool-storage';
 import { WebConfig } from './../../config/config'
-import { _ } from 'underscore'
-import {PreorderPage} from '../../pages'
+import { GlobalState} from './../../app/global.state';
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
 })
 export class AboutPage {
-  DataList:any = []
+  model:any;
+  WaitCount:any = 0;
   UserData:any;
-  TotalPrice:any = 0;
+  WaitPayCount:any = 0;
+  WaitSureCount:any = 0;
+  WaitPartCount:any = 0;
+
   constructor(public navCtrl: NavController,
-    private _state:GlobalState,
-    private CoolLocalStorage: CoolLocalStorage,
-      public modalCtrl: ModalController) {
+    public navParams: NavParams,
+    private comServices:comServices,
+    private orderServices:orderServices,
+    public appctrl: App,
+    private CoolLocalStorage:CoolLocalStorage,
+    private _state:GlobalState) {
+    
+      this.UserData = (Object)(this.CoolLocalStorage.getObject(WebConfig.cookieKeyName))
 
-     //UserData
-     var objQYObject = { name: null, memberID: null }
-    this.UserData = (Object)(this.CoolLocalStorage.getObject(WebConfig.cookieKeyName))
-  } 
-
-  ItemPlusClick(item){
-    item.selnum ++
-    this.ReSetTotalPrice()
-  }
-
-  ItemSubClick(item){
-    if(item.selnum <= 0){
-      //this.comServices.TipInfo("对不起不能小于0")
-      return
-    }else{
-      item.selnum --
-      this._state.notifyDataChanged('OrderChange', item)
-    }
-    this.ReSetTotalPrice()
-  }
-
-
-  ionViewDidLoad() {
-      var self = this;
-      this._state.subscribe('OrderChange', (data) => {
-        var findflag = false;
-        _.each(self.DataList,function(obj){
-          if(obj.mtcode == data.mtcode){
-            findflag = true;
-          }
-        })
-        if(!findflag){
-          switch(self.UserData.clienttype){
-            case 1:
-              data.price = data.sendprice1; 
-              break;
-            case 2:
-              data.price = data.sendprice2; 
-            break;
-            case 3:
-              data.price = data.sendprice3; 
-            break;
-          }
-          data.selnum = 1
-          self.DataList.push(data)
-          self.ReSetTotalPrice()
+      this._state.subscribe('OrderPayEvent', (data) => {
+        if(data.refresh == true){
+          this.InitData();
         }
-         
-      });
+      })
+
+      this._state.subscribe('OrderSHEvent', (data) => {
+        if(data.refresh == true){
+          this.InitData();
+        }
+      })
+  }
+  ionViewDidLoad() {
+    console.log("load contact")
+    this.InitData()
   }
 
-  ReSetTotalPrice(){
-    var self = this;
-    self.TotalPrice = 0;
-    _.each(this.DataList,function(obj){
-      self.TotalPrice += obj.price * obj.selnum;
+  InitData(){
+    //待确认
+    this.LoadWaitSureOrderCount()
+    //待收货
+    this.LoadWaitOrderCount()
+    //待支付
+    this.LoadWaitPayOrderCount()
+    //待仓库补发
+    this.LoadWaitPartOrderCount()
+  }
+
+  doRefresh(refresher) {
+    this.InitData()
+    setTimeout(function(){
+      refresher.complete();
+    },2000)
+  }
+
+  
+  //已完成订单
+  FinshOrder(){
+    this.appctrl.getRootNav().push(FinishorderlistPage)
+  }
+
+  //待确认订单
+  WaitSureOrder(){
+    if(this.WaitSureCount == 0)
+      return;
+    this.appctrl.getRootNav().push(WaitpayorderPage,{state:2})
+  }
+  //待支付订单
+  WaitPayOrder(){
+    if(this.WaitPayCount == 0)
+      return;
+    this.appctrl.getRootNav().push(WaitpayorderPage,{state:3})
+  }
+  //待收货订单
+  WaitOrder(){
+    if(this.WaitCount == 0)
+      return;
+    this.appctrl.getRootNav().push(OrderlistPage,{state:[4,5]})
+  }
+  //等待补发
+  WaitPartOrder(){
+    if(this.WaitPartCount == 0)
+      return;
+    this.appctrl.getRootNav().push(OrderlistPage,{state:[6]})
+  }
+  //待确认订单
+  LoadWaitSureOrderCount(){
+    var PostData = {
+      where:{
+        and:[{formstate:{inq:[2]}},{clientcode:this.UserData.clientcode}]
+      }
+    }
+    this.orderServices.OrderCount(PostData).subscribe(result => {
+      if (result != null) {
+        this.WaitSureCount = result.count
+      }
     })
   }
-
-  PreOrder(){
-      let PreorderPageModal = this.modalCtrl.create(PreorderPage, {OrderList:this.DataList});
-      PreorderPageModal.present();
+  //等待支付
+  LoadWaitPayOrderCount(){
+    var PostData = {
+      where:{
+        and:[{formstate:{inq:[3]}},{clientcode:this.UserData.clientcode}]
+      }
+    }
+    this.orderServices.OrderCount(PostData).subscribe(result => {
+      if (result != null) {
+        this.WaitPayCount = result.count
+      }
+    })
   }
-
+  //等待签收单据 包含财务确认
+  LoadWaitOrderCount(){
+    var PostData = {
+      where:{
+        and:[{formstate:{inq:[4,5]}},{clientcode:this.UserData.clientcode}]
+      }
+    }
+    this.orderServices.OrderCount(PostData).subscribe(result => {
+      if (result != null) {
+        this.WaitCount = result.count
+      }
+    })
+  }
+  //部分签收
+  LoadWaitPartOrderCount(){
+    var PostData = {
+      where:{
+        and:[{formstate:{inq:[6]}},{clientcode:this.UserData.clientcode}]
+      }
+    }
+    this.orderServices.OrderCount(PostData).subscribe(result => {
+      if (result != null) {
+        this.WaitPartCount = result.count
+      }
+    })
+  }
 }

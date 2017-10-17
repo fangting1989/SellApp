@@ -1,32 +1,49 @@
 <ion-header>
   <ion-navbar>
     <span class="top-title">
-      订单<span class="tprice">({{TotalPrice}}元)</span>
+      
     </span>
 
     <ion-buttons end>
-      <button ion-button icon-only (tap)="PreOrder()">
-        <img class="top-order" src="./assets/images/order.png" alt="" >
+     <button ion-button icon-only (tap)="FinshOrder()">
+       已完成订单
       </button>
     </ion-buttons>
 
   </ion-navbar>
 </ion-header>
 
-<ion-content >
-  <ion-list>
-      <ion-item *ngFor="let item of DataList" class="list-item">
-        <h2 style="margin:0px;">{{item.mtname}}</h2>
-        <p>{{item.desc}}</p> 
-        <ion-thumbnail item-start>
-          <img src="{{item.imgpath}}">
-        </ion-thumbnail>
-        <div class="dc">￥<span class="price">{{item.price}}</span>
-          <div class="btmnav"> 
-            <span class="sub" (tap)="ItemSubClick(item)">-</span><span class="num"><input type="text" [(ngModel)]="item.selnum" /></span><span class="plus" (tap)="ItemPlusClick(item)">+</span>
-          </div>
-        </div>
-        
-      </ion-item>
-    </ion-list>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="下拉刷新"
+       refreshingSpinner="circles"
+       refreshingText="">
+      </ion-refresher-content>
+    </ion-refresher>
+
+  <ion-card class="nav-dsh" (click)="WaitSureOrder()">
+    <ion-card-content >
+      待审核订单<span *ngIf="WaitSureCount">{{WaitSureCount}}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="nav-dsh" (click)="WaitPayOrder()">
+    <ion-card-content >
+      待付款订单<span *ngIf="WaitPayCount">{{WaitPayCount}}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="nav-dsh" (click)="WaitOrder()">
+    <ion-card-content >
+      待收货订单<span *ngIf="WaitCount">{{WaitCount}}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="nav-dsh" (click)="WaitPartOrder()">
+    <ion-card-content >
+      待仓库补发订单<span *ngIf="WaitPartCount">{{WaitPartCount}}</span>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

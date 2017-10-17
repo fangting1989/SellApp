@@ -5,7 +5,8 @@ import { MyApp } from './app.component';
 import { NavgationRoutes } from './app.route';
 import { AboutPage,ContactPage,HomePage ,TabsPage,LoginpagePage,
     PreorderPage,FinishorderlistPage,OrderlistPage,FixorderPage,OrderdetailPage,
-    FixorderitemPage} from '../pages';
+    FixorderitemPage,CartorderPage,WaitpayorderPage,WaitpayorderdetailPage,ChangepwdPage,
+    MoneyedPage,AccountsPage} from '../pages';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommonModule } from '@angular/common';
@@ -13,12 +14,13 @@ import { CoolStorageModule } from 'angular2-cool-storage';
 import { homeServices,loginServices,baseService,comServices,orderServices} from '../api'
 import { HttpModule } from '@angular/http';
 
-import { Dateformatpipe } from '../pipes'
+import { Dateformatpipe,ProStatepipe } from '../pipes'
 
 var AppComponents = [
   AboutPage,ContactPage,HomePage ,TabsPage,LoginpagePage,
   PreorderPage,FinishorderlistPage,OrderlistPage,FixorderPage,OrderdetailPage,
-  FixorderitemPage
+  FixorderitemPage,CartorderPage,WaitpayorderPage,WaitpayorderdetailPage,ChangepwdPage,
+  MoneyedPage,AccountsPage
 ]
 
 var AppServices = [
@@ -26,7 +28,7 @@ var AppServices = [
 ]
 
 var AppPipes = [
-  Dateformatpipe
+  Dateformatpipe,ProStatepipe
 ]
 
 import { GlobalState } from './global.state';
