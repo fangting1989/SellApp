@@ -1,29 +1,61 @@
 page-cartorder {
     .tprice{
-        color:red;
+        color:#f53d3d;
     }
     .top-order{
         width:24px;
         height:24px;
     }
+    .top-title{
+        .t-num{
+            font-style: normal;
+            color:#f53d3d;
+        }
+        .tcount{
+            margin-right: 30px;
+            .t-num{
+                margin-left: 5px;
+            }
+        }
+        .tmoney{
+            .t-num{
+                margin-left: 5px;
+            }
+        }
+    }
     .list-item{
         h2{
             font-size: 14px;
             margin-top:5px;
+            font-weight: 700;
         }
         p{
             font-size: 11px;
+            .price{
+                color:#f53d3d;
+            }
+            .frt{
+                padding: 0px 2px 0px 0px;
+                float: right;
+                font-style: normal;
+                font-size: 12px;
+            }
+            margin-right: 10px;
+        }
+        .tp{
+            margin-bottom: 9px;
+            font-size: 14px;
         }
     }
     .dc{
         font-size: 14px;
         .price{
-            color:red;
+            color:#f53d3d;
         }
     }
     .btmnav{
         color:#000;
-        height:25px;
+        height:30px;
         font-size: 0px;
         float: right;
         span{
@@ -31,32 +63,39 @@ page-cartorder {
             font-size: 16px;
             vertical-align: top;
             background: #f3f5f7;
-            line-height: 23px;
+            line-height: 28px;
         }
         .plus{
-            padding: 0px 8px;
+            padding: 0px 9px;
             margin: 0px 3px;
             border-radius: 100%;
+            margin-right: 10px;
         }
         .sub{
-            padding: 0px 9px;
+            padding: 0px 12px 0px 11px;
             margin: 0px 3px;
             border-radius: 100%;
         }
         .num{
             padding:0px 0px;
+            background: #fff;
             input{
                 width:30px;
-                height: 25px;
+                height: 29px;
                 border-radius: 0px;
-                text-shadow: 0px;
-                    border:1px solid #f3f5f7;
+                text-shadow: none;
+                 border:1px solid #f3f5f7;
                 background: #fff;
                 padding:0px;
                 text-align: center;
-                //border:none;
                 font-size: 14px;
+                -webkit-appearance: none;
             }
+        }
+        .money{
+            margin-right: 20px;
+            color:#f53d3d;
+            background: #fff;
         }
     }
 

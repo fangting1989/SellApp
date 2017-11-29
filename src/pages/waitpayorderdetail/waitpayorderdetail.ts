@@ -13,6 +13,7 @@ export class WaitpayorderdetailPage {
    DataList:any = [];
   ItemData:any = {};
   TotalMoney:any = 0;
+  TotalQuantity:any=0;
   OrderState:any = 0;
   CanPaying:any = true;
   
@@ -73,6 +74,7 @@ export class WaitpayorderdetailPage {
     this.TotalMoney = 0;
     _.each(this.DataList,function(obj){
       self.TotalMoney += obj.saleamount
+      self.TotalQuantity += obj.quantity
     })
   }
 

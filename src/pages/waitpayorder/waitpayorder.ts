@@ -33,9 +33,9 @@ export class WaitpayorderPage {
     this.viewCtrl.setBackButtonText('');
     this.OrderState =  this.navParams.get('state');
     if(this.OrderState == 2){
-      this.TitleText = '待审核订单列表'
+      this.TitleText = '待审核订单'
     }else if(this.OrderState == 3){
-      this.TitleText = '待支付订单列表'
+      this.TitleText = '待支付订单'
     }else{
       this.TitleText = ''
     }
@@ -56,6 +56,7 @@ export class WaitpayorderPage {
       if (result != null) {
         this.DataList = result;
         _.each(this.DataList,function(obj){
+          //加载订单金额
           self.loadItemCountMoney(obj)
         })
       }
@@ -68,10 +69,12 @@ export class WaitpayorderPage {
           formno:item.formno
         }
     }
+    //获得订单金额
     this.orderServices.OrderTotalCountMoney(PostData).subscribe(result => {
       if (result != null && result.errid > 0) {
         item.totalcount = result.data.PROCOUNT;
         item.totalmoney = result.data.TOTALMONEY;
+        item.totalquantity = result.data.TOTALQUANTITY;
       }
     })
   }

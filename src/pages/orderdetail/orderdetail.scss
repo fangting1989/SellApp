@@ -10,10 +10,23 @@ page-orderdetail {
     .list-item{
         h2{
             font-size: 14px;
-            margin-top:5px;
+            font-weight: 800;
         }
         p{
             font-size: 11px;
+            .price{
+                color:#f53d3d;
+            }
+            .frt{
+                padding: 0px 2px 0px 0px;
+                float: right;
+                font-style: normal;
+                font-size: 12px;
+            }
+        }
+        .tp{
+            margin-bottom: 9px;
+            font-size: 14px;
         }
         .label{
             margin: 10px 10px 5px 5px;

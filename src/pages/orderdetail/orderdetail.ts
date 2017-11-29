@@ -10,6 +10,7 @@ export class OrderdetailPage {
   DataList:any = [];
   ItemData:any = {};
   TotalMoney:any = 0;
+  TotalQuantity:any = 0;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl:ViewController,
@@ -65,6 +66,7 @@ export class OrderdetailPage {
     this.TotalMoney = 0;
     _.each(this.DataList,function(obj){
       self.TotalMoney += obj.saleamount
+      self.TotalQuantity += obj.quantity
     })
   }
 }

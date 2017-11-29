@@ -1,5 +1,6 @@
 <ion-tabs #myTabs class="tabbar-show">
   <ion-tab [root]="tab1Root" tabTitle="首页" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="购物车"  tabIcon="cart" tabBadge="{{ordercount }}" ></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="订单" (ionSelect)="reload()" tabIcon="list"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="我" tabIcon="person"></ion-tab>
 </ion-tabs>

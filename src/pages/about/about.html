@@ -1,18 +1,13 @@
+<!-- <ion-header class="headbar">
+  <ion-searchbar placeholder="订单查询" [showCancelButton]="shouldShowCancel" class="searchtoolbar" (ionInput)="getItems($event)"></ion-searchbar>
+</ion-header> -->
 <ion-header>
   <ion-navbar>
     <span class="top-title">
-      
-    </span>
-
-    <ion-buttons end>
-     <button ion-button icon-only (tap)="FinshOrder()">
-       已完成订单
-      </button>
-    </ion-buttons>
-
+      订单情况
+  </span>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content
@@ -44,6 +39,18 @@
   <ion-card class="nav-dsh" (click)="WaitPartOrder()">
     <ion-card-content >
       待仓库补发订单<span *ngIf="WaitPartCount">{{WaitPartCount}}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="nav-dsh" (click)="FinshOrder()">
+    <ion-card-content >
+      已完成订单
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="nav-dsh" >
+    <ion-card-content >
+      订货账单查询
     </ion-card-content>
   </ion-card>
 </ion-content>

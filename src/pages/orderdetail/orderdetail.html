@@ -16,14 +16,18 @@
 
 
 <ion-content>
-  <div class="hd-list-item">总金额:{{TotalMoney}}元</div>
+  <div class="hd-list-item">总项数:{{DataList.length}}&nbsp;&nbsp;&nbsp;总数量:{{TotalQuantity}}&nbsp;&nbsp;&nbsp;总金额:{{TotalMoney}}元</div>
    <ion-list>
       <ion-item *ngFor="let item of DataList" class="list-item">
-        <h2 style="margin:0px;">{{item.pro.mtname}}</h2>
-        <p>{{item.pro.desc}}</p> 
-        <ion-thumbnail item-start>
-          <img src="{{item.imgpath}}">
-        </ion-thumbnail>
+          <h2 style="margin:0px;">{{item.pro.mtname}}</h2>
+          <p ><i class="frt">{{item.pro.spec}}</i></p>
+          <p></p>
+          <p class="tp"><span class="price">{{item.sendprice}}</span>元/{{item.pro.stockunit}}<i class="frt">保质期{{item.pro.validdate}}个月</i></p>
+          <ion-thumbnail item-start>
+             <span class="retinab">
+              <img  src="{{item.imgpath}}">
+             </span>
+          </ion-thumbnail>
         <div class="dc">￥<span class="price">{{item.sendprice}}</span>
           <div class="btmnav">
             <span>下单:{{item.quantity}}{{item.pro.storeunit}}</span>&nbsp;,&nbsp;<span>签收{{item.sendquantity}}{{item.pro.storeunit}}</span>

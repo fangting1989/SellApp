@@ -5,6 +5,7 @@ import { CoolLocalStorage } from 'angular2-cool-storage';
 import { WebConfig } from './../../config/config'
 import { _ } from 'underscore'
 import {PreorderPage} from '../../pages'
+import {comServices} from '../../api'
 import * as Jquery from 'jquery'
 @Component({
   selector: 'page-cartorder',
@@ -15,6 +16,7 @@ export class CartorderPage {
    DataList:any = []
   UserData:any;
   TotalPrice:any = 0;
+
   constructor(public navCtrl: NavController,
     private _state:GlobalState,
     private CoolLocalStorage: CoolLocalStorage,
@@ -22,11 +24,27 @@ export class CartorderPage {
       private navParams:NavParams,
       public viewCtrl: ViewController,
       public cd: ChangeDetectorRef,
-      private alertCtrl: AlertController) {
+      private alertCtrl: AlertController,
+    private comServices:comServices) {
 
      //UserData
      var objQYObject = { name: null, memberID: null }
     this.UserData = (Object)(this.CoolLocalStorage.getObject(WebConfig.cookieKeyName))
+
+    //init cart list
+    this._state.subscribe('CartOrderChanged', (data) => {
+      console.log("1-2-3-4")
+      this.DataList = (Object)(this.CoolLocalStorage.getObject(WebConfig.cartkeyName))
+      if( Object.prototype.toString.call(this.DataList)!='[object Array]' ){
+        this.DataList = []
+      }
+      console.log(this.DataList)
+      this.ReSetTotalPrice()
+    })
+    this.DataList = (Object)(this.CoolLocalStorage.getObject(WebConfig.cartkeyName))
+    if( Object.prototype.toString.call(this.DataList)!='[object Array]' ){
+      this.DataList = []
+    }
   } 
 
   ItemPlusClick(item){
@@ -54,6 +72,8 @@ export class CartorderPage {
                 if(index > -1){
                   this.DataList.splice(index,1)
                 }
+                this.CoolLocalStorage.setObject(WebConfig.cartkeyName,this.DataList)
+                this._state.notifyDataChanged('CartOrderChanged2',{refresh:true})
               }
             }
           ]
@@ -62,15 +82,18 @@ export class CartorderPage {
       return
     }else{
       item.selnum --
-      this._state.notifyDataChanged('OrderChange', item)
+      this.CoolLocalStorage.setObject(WebConfig.cartkeyName,this.DataList)
+      this._state.notifyDataChanged('CartOrderChanged2',{refresh:true})
     }
     this.ReSetTotalPrice()
   }
   DataItemNumChange(item,e){
-    if(isNaN(item.selnum) || item.selnum == ''){
+    if(isNaN(item.selnum) || item.selnum == '' || item.selnum < 0){
       item.selnum = 1
     }
     this.ReSetTotalPrice()
+    this.CoolLocalStorage.setObject(WebConfig.cartkeyName,this.DataList)
+    this._state.notifyDataChanged('CartOrderChanged2',{refresh:true})
   }
 
   Blur(item,e){
@@ -84,7 +107,7 @@ export class CartorderPage {
   ionViewDidLoad() {
     this.viewCtrl.setBackButtonText('');
       var self = this;
-      this.DataList = this.navParams.get('DataList');
+      // this.DataList = this.navParams.get('DataList');
        this.ReSetTotalPrice()
   }
 
@@ -97,13 +120,18 @@ export class CartorderPage {
   }
 
   PreOrder(){
+    //订单为空的情况下不跳转
+    if(this.DataList.length == 0){
+      this.comServices.TipInfo("请先选择商品")
+      return
+    }
       let PreorderPageModal = this.modalCtrl.create(PreorderPage, {OrderList:this.DataList});
 
       PreorderPageModal.onDidDismiss(data => {
         if(data && data.order == 'success'){
           //订单完成，清空数据，并跳转到首页
-          this._state.notifyDataChanged('ClearOrderChange',{})
-          this.navCtrl.pop();
+          this._state.notifyDataChanged('CartOrderChanged',{refresh:true})
+          this._state.notifyDataChanged('CartOrderChanged2',{refresh:true})
         }
       });
 

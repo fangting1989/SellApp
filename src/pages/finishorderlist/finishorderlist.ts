@@ -52,6 +52,7 @@ export class FinishorderlistPage {
       if (result != null && result.errid > 0) {
         item.totalcount = result.data.PROCOUNT;
         item.totalmoney = result.data.TOTALMONEY;
+        item.totalquantity = result.data.TOTALQUANTITY;
       }
     })
   }

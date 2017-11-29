@@ -14,6 +14,7 @@ export class FixorderPage {
   TotalMoney:any = 0;
   OrderState:any = 0;
   CanSubmit:any = true;
+  TotalQuantity:any = 0;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl:ViewController,
@@ -81,6 +82,7 @@ export class FixorderPage {
     this.TotalMoney = 0;
     _.each(this.DataList,function(obj){
       self.TotalMoney += obj.saleamount
+      self.TotalQuantity += obj.quantity;
     })
   }
 

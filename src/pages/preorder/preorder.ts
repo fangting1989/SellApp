@@ -59,9 +59,10 @@ export class PreorderPage {
         if(result.errid > 0){
           this.comServices.TipInfo("订单下单成功！")
           setTimeout(function(){
-            
              self.ViewController.dismiss({order:'success'});
           },1500)
+          //清空内容
+          this.CoolLocalStorage.setObject(WebConfig.cartkeyName,[])
         }
       }
     })

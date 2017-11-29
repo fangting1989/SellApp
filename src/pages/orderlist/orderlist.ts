@@ -33,9 +33,13 @@ export class OrderlistPage {
     this.viewCtrl.setBackButtonText('');
     this.OrderState =  this.navParams.get('state');
     if(this.OrderState.length == 2){
-      this.TitleText = '待收货列表'
+      this.TitleText = '待收货订单'
     }else if(this.OrderState.length == 1){
-      this.TitleText = '待收货列表'
+      if(this.OrderState[0] == 6){
+        this.TitleText = '部分收货订单'
+      }else{
+      this.TitleText = '待收货订单'
+      }
     }else{
       this.TitleText = ''
     }
@@ -72,6 +76,7 @@ export class OrderlistPage {
       if (result != null && result.errid > 0) {
         item.totalcount = result.data.PROCOUNT;
         item.totalmoney = result.data.TOTALMONEY;
+        item.totalquantity = result.data.TOTALQUANTITY;
       }
     })
   }

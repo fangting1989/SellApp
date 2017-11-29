@@ -14,22 +14,23 @@ page-orderlist {
         }
         .card-content{
             padding:5px;
-             text-align: center;
-            min-height: 80px;
-            display: flex;
-            flex-direction:row;
-            justify-content:center;
-            align-items:center;
-            position: relative;
-            font-size: 18px;
-            font-weight: 700;
-            .rt{
-                    position: absolute;
-                    right: 10px;
-                    top: 26%;
-                    font-size: 39px;
-                    color: #f3f5f7;
-            }
+            text-align: left;
+            padding-left:10px;
+           min-height: 30px;
+           display: flex;
+           flex-direction:row;
+           justify-content:left;
+           align-items:center;
+           position: relative;
+           font-size: 14px;
+           font-weight: 700;
+           .rt{
+                   position: absolute;
+                   right: 10px;
+                   top: 7%;
+                   font-size: 28px;
+                   color: #f3f5f7;
+           }
         }
         .card-btm{
             height:26px;

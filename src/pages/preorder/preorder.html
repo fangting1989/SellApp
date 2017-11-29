@@ -6,25 +6,37 @@
 -->
 <ion-header>
 
-  <ion-toolbar >
+  <ion-navbar>
+      <ion-buttons start>
+          <button ion-button icon-only navPop >
+              <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+    <span class="top-title">
+        <span class="tcount">总数:<i class="t-num">{{DataList.length}}</i></span><span class="tmoney">总金额:<i class="t-num">{{TotalPrice}}</i></span>
+    </span>
+
+    <ion-buttons end style="    position: relative;">
+      <button ion-button icon-only (tap)="SureOrder()">
+        下单
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+  <!-- <ion-toolbar >
       <ion-buttons start>
         <button ion-button icon-only navPop >
           <ion-icon name="arrow-back"></ion-icon>
         </button>
       </ion-buttons>
-      <ion-title>订单确认</ion-title>
-  </ion-toolbar>
+      <ion-title>总数{{DataList.length}}总金额:(<i class="price">{{TotalPrice}}</i>)</ion-title>
+  </ion-toolbar> -->
 
 </ion-header>
 
 
 <ion-content class="pagecontent">
-  <ion-card class="top-tit-order">
-    <ion-card-content>
-      总金额:(<i class="price">{{TotalPrice}}</i>)
-    </ion-card-content>
-  </ion-card>
-
   <ion-card>
     <ion-card-header>
       订单详情
@@ -38,18 +50,11 @@
     	   	    <ion-col width-30 style="text-align: left;font-size: 14px;">￥{{o.price}}</ion-col>
     	   	  </ion-row>
     	  </ion-item>
-    	  <ion-item style="border-top: 1px solid #ccc;">
-    	   	  <ion-row center>
-    	   	    <ion-col width-50 style="text-align: left;font-size: 14px;"></ion-col>
-    	   	    <ion-col width-50 style="text-align: left;font-size: 14px;">&nbsp;&nbsp;总价 ￥{{TotalPrice}}</ion-col>
-    	   	  </ion-row>
-    	  </ion-item>
-
     	</ion-list>
 
     </ion-card-content>
   </ion-card>
-  <div class="btm-nav">
-  <button ion-button block color="danger" (click)="SureOrder()">确认下单</button>
-</div>
+  <!-- <div class="btm-nav">
+  <button ion-button block color="danger" >确认下单</button>
+</div> -->
 </ion-content>

@@ -9,13 +9,30 @@ page-preorder {
                  text-align: center;
                 .price{
                     font-style:normal; 
-                    color:red;
+                    color:#f53d3d;
                 }
              }
          }
          .btm-nav{
              margin: 0px 11px;
          }
+    }
+    .top-title{
+        .t-num{
+            font-style: normal;
+            color:#f53d3d;
+        }
+        .tcount{
+            margin-right: 30px;
+            .t-num{
+                margin-left: 5px;
+            }
+        }
+        .tmoney{
+            .t-num{
+                margin-left: 5px;
+            }
+        }
     }
    
 }

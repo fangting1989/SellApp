@@ -15,7 +15,7 @@ page-home {
             bottom: 0px;
         }
         .lefttype{
-            width:25%;
+            width:20%;
             height:100%;
             display: inline-block;
              font-size: 14px;
@@ -24,64 +24,97 @@ page-home {
                  border: #f6f6f6 solid 1px;
                  background: #fff;
                  text-align:center;
-                 padding:8px 0px; 
+                 height:55px;
+                 line-height: 55px;
+                 font-weight: 700;
              }
              .active{
-                color:#D0021B;
+                color:#f53d3d;
                 background:#F3F5F7; 
              }
         }
         .righttype{
-            width:75%;
+            width:80%;
             height:100%;
             display: inline-block;
             font-size: 12px;
             .list-item{
                 h2{
                     font-size: 14px;
+                    font-weight: 800;
                 }
                 p{
                     font-size: 11px;
                     .price{
-                        color:#D0021B;
+                        color:#f53d3d;
                     }
+                    .frt{
+                        padding: 0px 2px 0px 0px;
+                        float: right;
+                        font-style: normal;
+                        font-size: 12px;
+                    }
+                }
+                .tp{
+                    margin-bottom: 9px;
+                    font-size: 14px;
                 }
             }
             .btmnav{
                 height:25px;
                 font-size: 0px;
-                float: right;
-                span{
-                    display: inline-block;
-                    font-size: 16px;
-                    vertical-align: top;
-                    background: #f3f5f7;
-                    line-height: 23px;
-                }
-                .plus{
-                    padding: 0px 8px;
-                    margin: 0px 3px;
-                    border-radius: 100%;
-                }
-                .sub{
-                    padding: 0px 9px;
-                    margin: 0px 3px;
-                    border-radius: 100%;
-                }
-                .num{
-                    padding:0px 0px;
-                    input{
-                        width:30px;
-                        height: 25px;
-                        border-radius: 0px;
-                        text-shadow: 0px;
-                         border:1px solid #f3f5f7;
-                        background: #fff;
-                        padding:0px;
-                        text-align: center;
-                        font-size: 14px;
-                        //border:none;
+                float: left;
+                position: relative;
+                width:100%;
+                height:30px;
+                .lt{
+                    span{
+                        display: inline-block;
+                        font-size: 16px;
+                        vertical-align: top;
+                        background: #f3f5f7;
+                        line-height: 28px;
                     }
+                    .plus{
+                        padding: 0px 9px;
+                        margin: 0px 3px;
+                        border-radius: 100%;
+                        margin-right: 25px;
+                    }
+                    .sub{
+                        padding: 0px 12px 0px 11px;
+                        margin: 0px 3px;
+                        border-radius: 100%;
+                    }
+                    .num{
+                        padding:0px 0px;
+                        background: #fff;
+                        input{
+                            width:30px;
+                            height: 29px;
+                            border-radius: 0px;
+                            text-shadow: none;
+                             border:1px solid #f3f5f7;
+                            background: #fff;
+                            padding:0px;
+                            text-align: center;
+                            font-size: 14px;
+                            -webkit-appearance: none;
+                            //border:none;
+                        }
+                    }
+                }
+                
+                .s-sure{
+                    position: absolute;
+                    display: inline-block;
+                    right:3px;
+                    top:0px;
+                    font-size: 12px;
+                    padding: 0px 13px;
+                    margin-left: 3px;
+                    background: #f3f5f7;
+                    line-height: 29px;
                 }
             }
         }
@@ -108,7 +141,7 @@ page-home {
                 line-height: 15px;
                 top:0px;
                 right:0px;
-                background: #F53D3D;
+                background: #f53d3d;
                 color:#fff;
                 font-size: 10px;
                 font-weight: 700;
