@@ -135,40 +135,8 @@ ionViewDidLoad() {
 }
 
 ItemPlusClick(e,item){
-  this.fly($(e.target));
-  var self = this;
-  var findflag = false;
-  var selectItem = null;
-  //选择对应的商品，判断是否已经选择过
-    _.each(self.SelDataList,function(obj){
-      if(obj.mtcode == item.mtcode){
-        findflag = true;
-        selectItem = obj
-      }
-    })
-    if(!findflag){
-      switch(self.UserData.clienttype){
-        case 1:
-          item.price = item.sendprice1; 
-          break;
-        case 2:
-          item.price = item.sendprice2; 
-        break;
-        case 3:
-          item.price = item.sendprice3; 
-        break;
-      }
-      item.selnum = 1
-      self.SelDataList.push(item)
-    }
-    else{
-      item.selnum ++ 
-      selectItem.selnum = item.selnum
-    }
-    console.log(self.SelDataList)
-    //保存到缓存中
-    this.CoolLocalStorage.setObject(WebConfig.cartkeyName,self.SelDataList)
-    this._state.notifyDataChanged('CartOrderChanged',{refresh:true})
+  item.selnum  ++ 
+  
 }
 
 ItemSubClick(item){
@@ -194,6 +162,43 @@ ItemSubClick(item){
   }
   this.CoolLocalStorage.setObject(WebConfig.cartkeyName,this.SelDataList)
   this._state.notifyDataChanged('CartOrderChanged',{refresh:true})
+}
+
+SureClick(e,item){
+  this.fly($(e.target));
+  var self = this;
+  var findflag = false;
+  var selectItem = null;
+  //选择对应的商品，判断是否已经选择过
+    _.each(self.SelDataList,function(obj){
+      if(obj.mtcode == item.mtcode){
+        findflag = true;
+        selectItem = obj
+      }
+    })
+    if(!findflag){
+      switch(self.UserData.clienttype){
+        case 1:
+          item.price = item.sendprice1; 
+          break;
+        case 2:
+          item.price = item.sendprice2; 
+        break;
+        case 3:
+          item.price = item.sendprice3; 
+        break;
+      }
+      //item.selnum = 1
+      self.SelDataList.push(item)
+    }
+    else{
+      //item.selnum ++ 
+      selectItem.selnum = item.selnum
+    }
+    console.log(self.SelDataList)
+    //保存到缓存中
+    this.CoolLocalStorage.setObject(WebConfig.cartkeyName,self.SelDataList)
+    this._state.notifyDataChanged('CartOrderChanged',{refresh:true})
 }
 
 CartOrder(){

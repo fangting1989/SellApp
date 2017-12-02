@@ -1,4 +1,40 @@
 page-finishorderlist {
+    .headbar{
+        .t-s-date{
+            background: #f8f8f8;
+            .item{
+                width:48%;
+                display: inline-block;
+                min-height:0px !important;
+                font-size: 12px;
+                background: #f8f8f8;
+                .label{
+                    margin: 8px 8px 11px 0 !important;
+                }
+            }
+        }
+        .bar-button-md{
+            width:30px;
+            min-width: 0px;
+            
+        }
+        .searchbar-md{
+            background: #f8f8f8;
+            .searchbar-input-container{
+                background: #f8f8f8;
+                .searchbar-input{
+                    box-shadow: none !important;
+                    background: #fff;
+                }
+            }
+        }
+    }
+    .al-searchtoolbar{
+        background: #fff;
+        .searchbar-input{
+
+        }
+    }
     .card-item{
         .card-header{
             padding:5px;

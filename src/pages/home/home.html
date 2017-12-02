@@ -1,5 +1,5 @@
 <ion-header class="headbar">
-  <ion-searchbar placeholder="请输入名称"  [(ngModel)]="model.searchtext" [showCancelButton]="shouldShowCancel" class="searchtoolbar" (ionInput)="SearchItems($event)"></ion-searchbar>
+  <ion-searchbar placeholder="请输入名称" debounce="800"  [(ngModel)]="model.searchtext" [showCancelButton]="shouldShowCancel" class="searchtoolbar" (ionInput)="SearchItems($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content class="mainpagecontent">
@@ -20,7 +20,7 @@
            </span>
         </ion-thumbnail>
         <div class="btmnav">
-          <span class="lt"><span class="sub" (click)="ItemSubClick(item)">-</span><span class="num"><input type="number" [(ngModel)]="item.selnum" /></span><span class="plus" (click)="ItemPlusClick($event,item)">+</span></span>  <span class="s-sure">确定</span>
+          <span class="lt"><span class="sub" (tap)="ItemSubClick(item)">-</span><span class="num"><input type="number" [(ngModel)]="item.selnum" /></span><span class="plus" (tap)="ItemPlusClick($event,item)">+</span></span>  <span class="s-sure" (tap)="SureClick($event,item)">确定</span>
         </div>
       </ion-item>
     </ion-list>

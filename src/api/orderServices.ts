@@ -17,9 +17,11 @@ export class orderServices  {
     public SureOrder(data):any{
         return this.baseService.postData("RecClientindentMains/CreateOrder",data)
     }
-
     public OrderList(data):any{
         return this.baseService.getData("RecClientindentMains",data)
+    }
+    public OrderListN(data):any{
+        return this.baseService.postData("RecClientindentMains/orderlist",data)
     }
     public OrderCount(data):any{
         return this.baseService.getData("RecClientindentMains/count",data)
